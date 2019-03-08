@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/css/mdb.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Apply Leave</title>
+<style>
+#ApplyLeave {
+	padding-top: 5%;
+}
+
+#badgeDiv {
+	width: 200px;
+}
+
+#badgeSpan {
+	background-color: darkslategrey;
+	height: 40px;
+	font-size: 20px
+}
+
+#durationDiv {
+	width: 100px;
+}
+
+#durationSpan {
+	background-color: darkslategrey;
+	height: 25px;
+	font-size: 15px
+}
+
+@media ( min-width :1200px) {
+	.navbar, .page-footer, main {
+		padding-left: 170px
+	}
+}
+
+#Anav, #Snav {
+	padding-top: 15%;
+	padding-bottom: 15%;
+}
+
+#fontstyle {
+	font-family: arial;
+	font-size: 18px;
+}
+
+#Logout {
+	color: white;
+	font-size: 18;
+	box-shadow: 5px 5px 18px #888888;
+}
+
+#Logout:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+}
+</style>
+</head>
+<body class="grey lighten-3" id="fontstyle">
+	<header>
+		<!-- Navbar -->
+		<nav
+			class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+			<div class="container-fluid">
+				<!-- Links -->
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<!-- Left -->
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a>Gosphen College of
+								Engineering and Technology </a></li>
+					</ul>
+					<!-- Right -->
+					<ul class="navbar-nav nav-flex-icons">
+						<li class="nav-item">
+							<form method="post" action="StatusServlet">
+								<button id="Status" type="submit" name="Status"
+									class="btn btn-success waves-effect btn-sm">
+									<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Status
+								</button>
+							</form>
+						</li>
+					</ul>
+					<ul class="navbar-nav nav-flex-icons">
+						<li class="nav-item"><a href="studentlogin.html">
+								<button type="button" class="btn btn-danger waves-effect btn-sm"
+									id="Logout">
+									<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;LogOut
+								</button>
+						</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</nav>
+		<!-- Navbar -->
+	</header>
+	<!--Main layout-->
+	<main class="pt-5 mx-lg-5"> <!--Grid row-->
+	<div class="row wow fadeIn" id="ApplyLeave">
+
+		<!--Grid column-->
+		<div class="col-md-9 mb-4">
+
+			<div id="badgeDiv" class="card mb-4 wow fadeIn">
+				<span id="badgeSpan" class="badge darkgreen"> <i
+					id="badgeIcon" class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+					Applying Leave
+				</span>
+			</div>
+
+			<!--Card-->
+			<div class="card">
+
+				<!--Card content-->
+				<div class="card-body">
+
+					<form name="myform" id="formBtn" action="ApplyPassServlet"
+						method="post">
+						<!-- Grid row -->
+						<div class="form-row">
+							<!-- Default input -->
+							<div class="md-form">
+								<i class="fa fa-user fa-2x prefix"></i> <input type="text"
+									id="Name" name="Name" class="form-control"
+									placeholder="Your Name" required>
+
+							</div>
+							<!-- Default input -->
+							<div class="md-form">
+								<i class="fa fa-flighter-jet prefix" aria-hidden="true"></i> <input
+									type="text" id="Department" name="Department"
+									class="form-control" placeholder="Department" required>
+							</div>
+						</div>
+						<!-- Grid row -->
+						<div class="form-row">
+							<div id="year" class="md-form">
+								<i class="fa fa-id-card-o fa-2x prefix"></i> <input type="tel"
+									id="Year" name="Year" pattern="[1-4]" maxlength="1"
+									class="form-control validate" placeholder="Year" required>
+							</div>
+						</div>
+						<!-- Grid row -->
+						<div class="form-row">
+							<div id="rollnoDiv" class="md-form">
+								<i class="fa fa-id-badge fa-2x prefix"></i> <input type="text"
+									id="Rollno" name="Rollno" class="form-control validate"
+									placeholder="Rollno" required>
+							</div>
+						</div>
+						<!-- Grid row -->
+						<div class="form-row">
+							<!-- Default input -->
+							<div id="emailDiv" class="md-form">
+								<i class="fa fa-envelope prefix"></i> <input type="email"
+									id="Email" name="Email" class="form-control validate"
+									placeholder="Your Email" required>
+							</div>
+						</div>
+
+						<!-- Grid row -->
+						<div id="durationDiv" class="card mb-4 wow fadeIn">
+							<span id="durationSpan" class="badge darkgreen"> Duration</span>
+						</div>
+						<span>Leave Date :</span>
+						<!-- Grid row -->
+						<div class="form-row">
+
+							<!-- Default input -->
+							<div class="md-form">
+								<i class="fa fa-calendar prefix" aria-hidden="true"></i> <input
+									required type="date" id="LeaveDate" name="Leavedate"
+									class="form-control">
+							</div>
+						</div>
+
+						<!-- Grid row -->
+						<div class="form-row">
+
+							<!-- Default input -->
+							<div id="leavepurposeDiv" class="md-form">
+								<i class="fa fa-building prefix" aria-hidden="true"></i> <input
+									type="text" id="Leavepurpose" name="Leavepurpose"
+									class="form-control" placeholder="Leave Purpose" required>
+							</div>
+						</div>
+						<!-- Grid row -->
+						<div class="form-row">
+
+							<!-- Default input -->
+							<div id="phoneDiv" class="md-form">
+								<i class="fa fa-phone prefix" aria-hidden="true"></i> <input
+									type="tel" id="Phoneno" name="Phoneno" class="form-control"
+									pattern="[6-9]{1}[0-9]{9}" maxlength="10"
+									placeholder="Your Phonenumber" required>
+							</div>
+						</div>
+
+						<!-- Grid row -->
+						<div class="form-row">
+							<div id="buttonDiv" class="md-form">
+								<button id="Applyleave" type="submit" name="ApplyLeave"
+									class="btn btn-danger btn-rounded">
+									<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;Apply
+								</button>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="SucessModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Leave Request</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Request has been sent. Check your status after few minutes</p>
+				</div>
+				<div class="modal-footer">
+					<a href="applyleave.html">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">OK</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	<script>
+		// Get the modal
+		var modal = document.getElementById('SucessModal');
+
+		// Get the button that opens the modal
+		var btn = document.getElementById("Applyleave");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks the button, open the modal 
+		btn.onclick = function() {
+			modal.style.display = "block";
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		/* // When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			} */
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+package com.chainsys.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.chainsys.dao.ApplyPassDAO;
+import com.chainsys.modal.ApplyPass;
+
+@WebServlet("/UpdateRejectServlet")
+public class UpdateRejectServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String selectedRollno = request.getParameter("Aproverollno");
+		ApplyPass applyPass=new ApplyPass();
+		applyPass.setRollno(selectedRollno);
+			
+		ApplyPassDAO applyPassdao = new ApplyPassDAO();
+		
+		try {
+			ApplyPass applyPass1=applyPassdao.updateRejectStatus(applyPass);
+		//	System.out.println(applyPass1);
+			RequestDispatcher rd=request.getRequestDispatcher("leavelist.jsp");
+			rd.forward(request, response);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			RequestDispatcher rd=request.getRequestDispatcher("Failure.html");
+			rd.forward(request, response);
+		}
+	}
+}
