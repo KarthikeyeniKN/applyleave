@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,9 +22,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Status</title>
 <style>
-#Status{
-    padding-top: 5%;
+#Status {
+	padding-top: 5%;
 }
+
 #badgeDiv {
 	width: 150px;
 }
@@ -33,15 +35,18 @@
 	height: 40px;
 	font-size: 20px
 }
+
 #fontstyle {
 	font-family: arial;
 	font-size: 18px;
 }
+
 @media ( min-width :1200px) {
 	.navbar, .page-footer, main {
 		padding-left: 150px
 	}
 }
+
 #Logout {
 	color: white;
 	font-size: 18;
@@ -51,48 +56,45 @@
 #Logout:hover {
 	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
 		rgba(0, 0, 0, 0.19);
-}</style>
+}
+</style>
 </head>
 <body class="grey lighten-3" id="fontstyle">
-	<header>
-		<!-- Navbar -->
-		<nav
-			class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-			<div class="container-fluid">
-				<!-- Links -->
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<!-- Left -->
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a>Gosphen College of
-								Engineering and Technology </a></li>
-					</ul>
-					<!-- Right -->
-					<ul class="navbar-nav nav-flex-icons">
-						<li class="nav-item">
-							<form method="post" action="applyleave.html">
-								<button id="ApplyLeave" type="submit" name="ApplyLeave"
-									class="btn btn-success waves-effect btn-sm">
-									<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Apply Leave
-								</button>
-							</form>
-						</li>
-					</ul>
-					<ul class="navbar-nav nav-flex-icons">
-						<li class="nav-item">
-						<a href="studentlogin.html">
-							<button type="button"
-								class="btn btn-danger waves-effect btn-sm" id="Logout">
-								<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;LogOut
-							</button>
-							</a>
-						</li>
-					</ul>
-				</div>
+	<header> <!-- Navbar --> <nav
+		class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+	<div class="container-fluid">
+		<!-- Links -->
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<!-- Left -->
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a>Gosphen College of
+						Engineering and Technology </a></li>
+			</ul>
+			<!-- Right -->
+			<ul class="navbar-nav nav-flex-icons">
+				<li class="nav-item">
+					<form method="post" action="applyleave.html">
+						<button id="ApplyLeave" type="submit" name="ApplyLeave"
+							class="btn btn-success waves-effect btn-sm">
+							<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Apply
+							Leave
+						</button>
+					</form>
+				</li>
+			</ul>
+			<ul class="navbar-nav nav-flex-icons">
+				<li class="nav-item"><a href="studentlogin.html">
+						<button type="button" class="btn btn-danger waves-effect btn-sm"
+							id="Logout">
+							<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;LogOut
+						</button>
+				</a></li>
+			</ul>
+		</div>
 
-			</div>
-		</nav>
-		<!-- Navbar -->
-	</header>>
+	</div>
+	</nav> <!-- Navbar --> </header>
+	>
 	<main class="pt-5 mx-lg-5">
 	<div class="row wow fadeIn" id="Status">
 
@@ -121,19 +123,19 @@
 					</tr>
 				</thead>
 				<tbody>
-
-					<tr>
-						<td>${STATUS.rollno}</td>
-						<td>${STATUS.leavedate}</td>
-						<td>${STATUS.leavepurpose}</td>
-						<td>${STATUS.status}</td>
-					</tr>
-
+					<c:forEach var="status" items="${STATUS}">
+						<tr>
+							<td>${status.rollno}</td>
+							<td>${status.leavedate}</td>
+							<td>${status.leavepurpose}</td>
+							<td>${status.status}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
-</main>
+	</main>
 
 </body>
 </html>

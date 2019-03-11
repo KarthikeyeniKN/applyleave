@@ -16,6 +16,8 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/css/mdb.min.css"
 	rel="stylesheet">
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Leave List</title>
 <Style>
@@ -73,6 +75,26 @@
 					</ul>
 					<!-- Right -->
 					<ul class="navbar-nav nav-flex-icons">
+						<li class="nav-item">
+							<a href="addstudent.html">
+								<button id="Add" type="submit" name="Add"
+									class="btn btn-success waves-effect btn-sm">
+									<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Add Student
+								</button>
+							</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav nav-flex-icons">
+						<li class="nav-item">
+							<form method="post" action="HistoryServlet">
+								<button id="History" type="submit" name="Status"
+									class="btn btn-success waves-effect btn-sm">
+									<i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;History
+								</button>
+							</form>
+						</li>
+					</ul>
+					<ul class="navbar-nav nav-flex-icons">
 						<li class="nav-item"><a href="adminlogin.html">
 								<button type="button" class="btn btn-danger waves-effect btn-sm"
 									id="Logout">
@@ -86,8 +108,7 @@
 		</nav>
 		<!-- Navbar -->
 	</header>
-	<!-- <form method="post" action="">
-	 -->	<main class="pt-5 mx-lg-5">
+		<main class="pt-5 mx-lg-5">
 		<div class="row wow fadeIn" id="LeaveList">
 
 			<!--Grid column-->
@@ -97,6 +118,7 @@
 					<span id="badgeSpan" class="badge darkgreen"> <i
 						id="badgeIcon" class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Leave List
 					</span>
+					
 				</div>
 			</div>
 		</div>
@@ -109,7 +131,8 @@
 						<tr>
 							<th scope="col">Id</th>
 							<th scope="col">Name</th>
-							<th scope="col">Department/Year</th>
+							<th scope="col">Department</th>
+							<th scope="col">Year</th>
 							<th scope="col">Rollno</th>
 							<th scope="col">LeaveDate</th>
 							<th scope="col">Purpose</th>
@@ -123,13 +146,14 @@
 							<tr>
 								<td>${leavelist.id}</td>
 								<td>${leavelist.name}</td>
-								<td>${leavelist.departmentyear}</td>
+								<td>${leavelist.department}</td>
+								<td>${leavelist.year}</td>
 								<td>${leavelist.rollno}</td>
 								<td>${leavelist.leavedate}</td>
 								<td>${leavelist.leavepurpose}</td>
 								<td>
 								<div id="btn-align"><form method="post" action="UpdateRejectServlet">
-								<button id="Aprove" type="submit" name="Aproverollno"
+								<button id="Reject" type="submit" name="Rejectrollno"
 										value="${leavelist.rollno}"
 										class="btn btn-danger btn-sm">Reject</button></form>
 										<form method="post" action="UpdateApproveServlet">
@@ -138,12 +162,28 @@
 										class="btn btn-success btn-sm">Approve</button></form></div></td>		
 						</tr>
 						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>
 		</div>
 		
 	</main>
-	<!-- </form>
- --></body>
+	<!-- <script>
+    
+	$('#Aprove').on('click',function()
+			  {
+			    $(this).val('Please wait ...')
+			      .attr('disabled','disabled');
+			    $('#theform').submit();
+			  });  
+	 $('#btn-align').on('click',function()
+			  {
+			    $(this).val('Please wait ...')
+			      .attr('disabled','disabled');
+			    $('#theform').submit();
+			  }); 
+					
+</script>
+	 --></body>
 </html>

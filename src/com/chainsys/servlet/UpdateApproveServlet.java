@@ -18,7 +18,7 @@ public class UpdateApproveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String selectedRollno = request.getParameter("Aproverollno");
+		int selectedRollno = Integer.parseInt(request.getParameter("Aproverollno"));
 		ApplyPass applyPass=new ApplyPass();
 		applyPass.setRollno(selectedRollno);
 			
@@ -27,6 +27,7 @@ public class UpdateApproveServlet extends HttpServlet {
 		try {
 			ApplyPass applyPass1=applyPassdao.updateApproveStatus(applyPass);
 			//System.out.println(applyPass1);
+			request.setAttribute("LEAVELIST", applyPassdao.findAll());
 			RequestDispatcher rd=request.getRequestDispatcher("leavelist.jsp");
 			rd.forward(request, response);
 		

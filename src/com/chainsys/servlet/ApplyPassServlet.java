@@ -23,7 +23,7 @@ public class ApplyPassServlet extends HttpServlet {
 		String name = request.getParameter("Name");
 		String department = request.getParameter("Department");
 		int year = Integer.parseInt(request.getParameter("Year"));
-		String rollno = request.getParameter("Rollno");
+		int rollno = Integer.parseInt(request.getParameter("Rollno"));
 		String email = request.getParameter("Email");
 		LocalDate leavedate = LocalDate.parse(request.getParameter("Leavedate"));
 		String purpose = request.getParameter("Leavepurpose");

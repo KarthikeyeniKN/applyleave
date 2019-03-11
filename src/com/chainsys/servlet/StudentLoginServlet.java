@@ -1,17 +1,14 @@
 package com.chainsys.servlet;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
 
 import com.chainsys.dao.StudentLoginDAO;
 import com.chainsys.modal.StudentLogin;
@@ -36,7 +33,7 @@ public class StudentLoginServlet extends HttpServlet {
 			boolean result;
 			try {
 			result = studentLogindao.validator(studentLogin);
-		//	System.out.println(result);
+			System.out.println(result);
 			
 			if (result == true) {
 			session.setAttribute("NAME", name);

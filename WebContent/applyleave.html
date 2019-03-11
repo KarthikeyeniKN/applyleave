@@ -140,30 +140,30 @@
 							<div class="md-form">
 								<i class="fa fa-user fa-2x prefix"></i> <input type="text"
 									id="Name" name="Name" class="form-control"
-									placeholder="Your Name" required>
+									placeholder="Your Name" required maxlength="15" >
 
 							</div>
 							<!-- Default input -->
 							<div class="md-form">
 								<i class="fa fa-flighter-jet prefix" aria-hidden="true"></i> <input
 									type="text" id="Department" name="Department"
-									class="form-control" placeholder="Department" required>
+									class="form-control" placeholder="Department" required pattern="[a-z]{3}" maxlength="3">
 							</div>
 						</div>
 						<!-- Grid row -->
 						<div class="form-row">
 							<div id="year" class="md-form">
 								<i class="fa fa-id-card-o fa-2x prefix"></i> <input type="tel"
-									id="Year" name="Year" pattern="[1-4]" maxlength="1"
+									id="Year" name="Year" pattern="[1-4]{1}" maxlength="1"
 									class="form-control validate" placeholder="Year" required>
 							</div>
 						</div>
 						<!-- Grid row -->
 						<div class="form-row">
 							<div id="rollnoDiv" class="md-form">
-								<i class="fa fa-id-badge fa-2x prefix"></i> <input type="text"
+								<i class="fa fa-id-badge fa-2x prefix"></i> <input type="tel"
 									id="Rollno" name="Rollno" class="form-control validate"
-									placeholder="Rollno" required>
+									placeholder="Rollno" required pattern="[1-9]{6}" maxlength="6">
 							</div>
 						</div>
 						<!-- Grid row -->
@@ -172,7 +172,7 @@
 							<div id="emailDiv" class="md-form">
 								<i class="fa fa-envelope prefix"></i> <input type="email"
 									id="Email" name="Email" class="form-control validate"
-									placeholder="Your Email" required>
+									placeholder="Your college Email" required>
 							</div>
 						</div>
 
@@ -199,7 +199,7 @@
 							<div id="leavepurposeDiv" class="md-form">
 								<i class="fa fa-building prefix" aria-hidden="true"></i> <input
 									type="text" id="Leavepurpose" name="Leavepurpose"
-									class="form-control" placeholder="Leave Purpose" required>
+									class="form-control" placeholder="Leave Purpose" required maxlength="15">
 							</div>
 						</div>
 						<!-- Grid row -->
@@ -257,7 +257,7 @@
 		var modal = document.getElementById('SucessModal');
 
 		// Get the button that opens the modal
-		var btn = document.getElementById("Applyleave");
+		var btn = document.getElementById('Applyleave');
 
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];

@@ -20,7 +20,7 @@ public class StudentLoginDAO {
 
 		ResultSet resultSet = preparedStatement.executeQuery();
 		result = resultSet.next();
-	//	System.out.println(result);
+	System.out.println(result);
 		return result;
 
 		}

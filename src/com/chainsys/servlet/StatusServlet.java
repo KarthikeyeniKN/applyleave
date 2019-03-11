@@ -27,12 +27,13 @@ public class StatusServlet extends HttpServlet {
 		ApplyPassDAO applyPassdao = new ApplyPassDAO();
 			
 				String name=(String) session.getAttribute("NAME");
-				System.out.println(name);
-				ApplyPass applyPass1;
+				//System.out.println(name);
+				//ApplyPass applyPass1;
 				try {
 					ArrayList<ApplyPass> applyPass = applyPassdao.findByName(name);
 					//applyPass1 = applyPassdao.findByName(name);
 					request.setAttribute("STATUS",applyPass);
+					System.out.println(applyPass);
 					RequestDispatcher rd=request.getRequestDispatcher("studentstatus.jsp");
 					rd.forward(request, response);
 				} catch (Exception e) {

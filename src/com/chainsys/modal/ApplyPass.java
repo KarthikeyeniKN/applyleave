@@ -8,7 +8,7 @@ public class ApplyPass {
 	public String name;
 	public String department;
 	public int year;
-	public String rollno;
+	public int rollno;
 	public String email;
 	public LocalDate leavedate;
 	public String leavepurpose;
@@ -32,11 +32,11 @@ public class ApplyPass {
 		this.name = name;
 	}
 
-	public String getRollno() {
+	public int getRollno() {
 		return rollno;
 	}
 
-	public void setRollno(String rollno) {
+	public void setRollno(int rollno) {
 		this.rollno = rollno;
 	}
 
@@ -117,5 +117,7 @@ public class ApplyPass {
 				+ phonenumber + ", status=" + status + ", createddate="
 				+ createddate + "]";
 	}
+
+	
 
 }
