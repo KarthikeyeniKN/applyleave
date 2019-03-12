@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -83,7 +83,7 @@
 				</li>
 			</ul>
 			<ul class="navbar-nav nav-flex-icons">
-				<li class="nav-item"><a href="studentlogin.html">
+				<li class="nav-item"><a href="studentlogin.jsp">
 						<button type="button" class="btn btn-danger waves-effect btn-sm"
 							id="Logout">
 							<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;LogOut
@@ -91,13 +91,10 @@
 				</a></li>
 			</ul>
 		</div>
-
 	</div>
 	</nav> <!-- Navbar --> </header>
-	>
 	<main class="pt-5 mx-lg-5">
 	<div class="row wow fadeIn" id="Status">
-
 		<!--Grid column-->
 		<div class="col-md-16 mb-4">
 
@@ -108,11 +105,9 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="card">
 		<!--Card content-->
 		<div class="card-body">
-
 			<table class="table table-hover">
 				<thead class="blue-grey lighten-4">
 					<tr>
@@ -136,6 +131,5 @@
 		</div>
 	</div>
 	</main>
-
 </body>
 </html>

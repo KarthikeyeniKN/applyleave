@@ -20,16 +20,14 @@ public class LeaveListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ApplyPassDAO applyPassdao = new ApplyPassDAO();
-		
 		try {
-			ArrayList<ApplyPass> leaveList = applyPassdao.findAll();
+			ArrayList<ApplyPass> leaveList = applyPassdao.findPending();
 			request.setAttribute("LEAVELIST", leaveList);
 			RequestDispatcher rd = request
 					.getRequestDispatcher("leavelist.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("false");
 		}
 	}
 }

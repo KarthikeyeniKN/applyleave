@@ -12,6 +12,10 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/css/mdb.min.css"
 	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Add Student</title>
 <Style>
@@ -55,7 +59,6 @@
 	vertical-align: right;
 }
 </Style>
-
 </head>
 <body class="grey lighten-3" id="fontstyle">
 	<header>
@@ -93,7 +96,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav nav-flex-icons">
-						<li class="nav-item"><a href="adminlogin.html">
+						<li class="nav-item"><a href="adminlogin.jsp">
 								<button type="button" class="btn btn-danger waves-effect btn-sm"
 									id="Logout">
 									<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;LogOut
@@ -109,23 +112,18 @@
 		<!--Main layout-->
 		<main class="pt-5 mx-lg-5"> <!--Grid row-->
 		<div class="row wow fadeIn" id="AddStudent">
-
 			<!--Grid column-->
 			<div class="col-md-9 mb-4">
-
 				<div id="badgeDiv" class="card mb-4 wow fadeIn">
 					<span id="badgeSpan" class="badge darkgreen"> <i
 						id="badgeIcon" class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
 						Add Student
 					</span>
 				</div>
-
 				<!--Card-->
 				<div class="card">
-
 					<!--Card content-->
 					<div class="card-body">
-
 						<form name="myform" id="formBtn" action="AddStudentServlet"
 							method="post">
 							<!-- Grid row -->
@@ -134,17 +132,19 @@
 								<div class="md-form">
 									<i class="fa fa-user fa-2x prefix"></i> <input type="text"
 										id="Name" name="Name" class="form-control"
-										placeholder=" Student Name" required maxlength="15">
-
+										title="4-15 Characters,a-z is only allowed"
+										pattern="[a-z]{4,15}" placeholder=" Student Name" required
+										maxlength="15">
 								</div>
-								
 							</div>
 							<!-- Grid row -->
 							<div class="form-row">
 								<div id="year" class="md-form">
 									<i class="fa fa-id-card-o fa-2x prefix"></i> <input type="tel"
 										id="Year" name="Year" pattern="[1-4]{1}" maxlength="1"
-										class="form-control validate" placeholder="Year" required>
+										class="form-control validate"
+										title="1-4 numbers is only allowed" placeholder="Year"
+										required>
 								</div>
 							</div>
 							<!-- Grid row -->
@@ -152,44 +152,47 @@
 								<div id="rollnoDiv" class="md-form">
 									<i class="fa fa-id-badge fa-2x prefix"></i> <input type="tel"
 										id="Rollno" name="Rollno" class="form-control validate"
-										placeholder="Rollno" required pattern="[1-9]{6}" maxlength="6">
+										placeholder="Rollno" required pattern="[1-9]{6}"
+										title="only digits allowed" maxlength="6">
 								</div>
 							</div>
 							<!-- Default input -->
 							<!-- Grid row -->
-							<div class="form-row" id="emailDiv" >
+							<div class="form-row" id="departmentDiv">
 								<div class="md-form">
-									<i class="fa fa-flighter-jet prefix" aria-hidden="true"></i> <input
+									<i class="fa fa-clone fa-2x prefix" aria-hidden="true"></i> <input
 										type="text" id="Department" name="Department"
 										class="form-control" placeholder="Department" required
-										pattern="[a-z]{3}" maxlength="3">
-										</div>
+										pattern="[a-z]{3}" title="3 Characters,a-z is only allowed"
+										maxlength="3">
 								</div>
+							</div>
 							<!-- Grid row -->
 							<div class="form-row">
 								<div id="emailDiv" class="md-form">
 									<i class="fa fa-envelope prefix"></i> <input type="email"
 										id="Email" name="Email" class="form-control validate"
-										placeholder="College Email" required>
+										placeholder="College Email" title="abc12@gmail.com"
+										pattern="[a-z0-9]+@[a-z]+.[a-z]{2,}" required>
 								</div>
 							</div>
 							<!-- Grid row -->
 							<div class="form-row">
 								<div id="passwordDiv" class="md-form">
-									<i class="fa fa-user prefix"></i> <input type="password"
+									<i class="fa fa-user prefix"></i> <input type="text"
 										id="Password" name="Password" class="form-control validate"
-										placeholder="Set Password" required>
+										placeholder="Set Password" pattern="[a-z0-9]{4,8}" required>
 								</div>
 							</div>
 							<!-- Grid row -->
-						<div class="form-row">
-							<div id="buttonDiv" class="md-form">
-								<button id="Add" type="submit" name="Add"
-									class="btn btn-danger btn-rounded">
-									<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add
-								</button>
+							<div class="form-row">
+								<div id="buttonDiv" class="md-form">
+									<button id="Add" type="submit" name="Add"
+										class="btn btn-danger btn-rounded" onclick="myFunction()">
+										<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add
+									</button>
+								</div>
 							</div>
-						</div>
 						</form>
 					</div>
 				</div>
@@ -197,6 +200,11 @@
 		</div>
 		</main>
 	</header>
-
+	<!-- <script>
+		function myFunction() {
+			alert("Student details has been added");
+		}
+	</script>
+ -->
 </body>
 </html>

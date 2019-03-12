@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -16,7 +15,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/css/mdb.min.css"
 	rel="stylesheet">
-	<script
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Leave List</title>
@@ -42,9 +41,11 @@
 	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
 		rgba(0, 0, 0, 0.19);
 }
-#LeaveList{
-    padding-top: 5%;
+
+#LeaveList {
+	padding-top: 5%;
 }
+
 #badgeDiv {
 	width: 150px;
 }
@@ -54,10 +55,10 @@
 	height: 40px;
 	font-size: 20px;
 }
-#btn-align {
-    vertical-align:right;
-}
 
+#btn-align {
+	vertical-align: right;
+}
 </Style>
 </head>
 <body class="grey lighten-3" id="fontstyle">
@@ -75,14 +76,13 @@
 					</ul>
 					<!-- Right -->
 					<ul class="navbar-nav nav-flex-icons">
-						<li class="nav-item">
-							<a href="addstudent.html">
+						<li class="nav-item"><a href="addstudent.html">
 								<button id="Add" type="submit" name="Add"
 									class="btn btn-success waves-effect btn-sm">
-									<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Add Student
+									<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Add
+									Student
 								</button>
-							</a>
-						</li>
+						</a></li>
 					</ul>
 					<ul class="navbar-nav nav-flex-icons">
 						<li class="nav-item">
@@ -95,7 +95,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav nav-flex-icons">
-						<li class="nav-item"><a href="adminlogin.html">
+						<li class="nav-item"><a href="adminlogin.jsp">
 								<button type="button" class="btn btn-danger waves-effect btn-sm"
 									id="Logout">
 									<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;LogOut
@@ -103,87 +103,68 @@
 						</a></li>
 					</ul>
 				</div>
-
 			</div>
 		</nav>
 		<!-- Navbar -->
 	</header>
-		<main class="pt-5 mx-lg-5">
-		<div class="row wow fadeIn" id="LeaveList">
+	<main class="pt-5 mx-lg-5">
+	<div class="row wow fadeIn" id="LeaveList">
 
-			<!--Grid column-->
-			<div class="col-md-16 mb-4">
+		<!--Grid column-->
+		<div class="col-md-16 mb-4">
 
-				<div id="badgeDiv" class="card mb-4 wow fadeIn">
-					<span id="badgeSpan" class="badge darkgreen"> <i
-						id="badgeIcon" class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Leave List
-					</span>
-					
-				</div>
+			<div id="badgeDiv" class="card mb-4 wow fadeIn">
+				<span id="badgeSpan" class="badge darkgreen"> <i
+					id="badgeIcon" class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Leave
+					List
+				</span>
 			</div>
 		</div>
-		<div class="card">
-			<!--Card content-->
-			<div class="card-body">
-
-				<table class="table table-hover">
-					<thead class="blue-grey lighten-4">
+	</div>
+	<div class="card">
+		<!--Card content-->
+		<div class="card-body">
+			<table class="table table-hover">
+				<thead class="blue-grey lighten-4">
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Name</th>
+						<th scope="col">Department</th>
+						<th scope="col">Year</th>
+						<th scope="col">Rollno</th>
+						<th scope="col">LeaveDate</th>
+						<th scope="col">Purpose</th>
+						<th scope="col" id="BUTTON">Reject Approve</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="leavelist" items="${LEAVELIST}">
 						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Name</th>
-							<th scope="col">Department</th>
-							<th scope="col">Year</th>
-							<th scope="col">Rollno</th>
-							<th scope="col">LeaveDate</th>
-							<th scope="col">Purpose</th>
-							<th scope="col" id="BUTTON">Reject Approve</th>
-							
+							<td>${leavelist.id}</td>
+							<td>${leavelist.name}</td>
+							<td>${leavelist.department}</td>
+							<td>${leavelist.year}</td>
+							<td>${leavelist.rollno}</td>
+							<td>${leavelist.leavedate}</td>
+							<td>${leavelist.leavepurpose}</td>
+							<td>
+								<div id="btn-align">
+									<form method="post" action="UpdateRejectServlet">
+										<button id="Reject" type="submit" name="Rejectrollno"
+											value="${leavelist.rollno}" class="btn btn-danger btn-sm">Reject</button>
+									</form>
+									<form method="post" action="UpdateApproveServlet">
+										<button id="Aprove" type="submit" name="Aproverollno"
+											value="${leavelist.rollno}" class="btn btn-success btn-sm">Approve</button>
+									</form>
+								</div>
+							</td>
 						</tr>
-					</thead>
-					<tbody>
-					
-						<c:forEach var="leavelist" items="${LEAVELIST}">
-							<tr>
-								<td>${leavelist.id}</td>
-								<td>${leavelist.name}</td>
-								<td>${leavelist.department}</td>
-								<td>${leavelist.year}</td>
-								<td>${leavelist.rollno}</td>
-								<td>${leavelist.leavedate}</td>
-								<td>${leavelist.leavepurpose}</td>
-								<td>
-								<div id="btn-align"><form method="post" action="UpdateRejectServlet">
-								<button id="Reject" type="submit" name="Rejectrollno"
-										value="${leavelist.rollno}"
-										class="btn btn-danger btn-sm">Reject</button></form>
-										<form method="post" action="UpdateApproveServlet">
-								<button id="Aprove" type="submit" name="Aproverollno"
-										value="${leavelist.rollno}"
-										class="btn btn-success btn-sm">Approve</button></form></div></td>		
-						</tr>
-						</c:forEach>
-						
-					</tbody>
-				</table>
-			</div>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
-		
+	</div>
 	</main>
-	<!-- <script>
-    
-	$('#Aprove').on('click',function()
-			  {
-			    $(this).val('Please wait ...')
-			      .attr('disabled','disabled');
-			    $('#theform').submit();
-			  });  
-	 $('#btn-align').on('click',function()
-			  {
-			    $(this).val('Please wait ...')
-			      .attr('disabled','disabled');
-			    $('#theform').submit();
-			  }); 
-					
-</script>
-	 --></body>
+</body>
 </html>

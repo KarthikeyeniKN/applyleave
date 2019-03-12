@@ -9,7 +9,6 @@ import com.chainsys.modal.StudentLogin;
 import com.chainsys.passgeneration.ConnectionUtil;
 
 public class StudentLoginDAO {
-
 	public boolean validator(StudentLogin studentLogin) throws SQLException {
 		boolean result = false;
 		Connection connection = ConnectionUtil.getConnection();
@@ -17,12 +16,9 @@ public class StudentLoginDAO {
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		preparedStatement.setString(1, studentLogin.getName());
 		preparedStatement.setString(2, studentLogin.getPassword());
-
 		ResultSet resultSet = preparedStatement.executeQuery();
 		result = resultSet.next();
-	System.out.println(result);
+		System.out.println(result);
 		return result;
-
-		}
-
+	}
 }

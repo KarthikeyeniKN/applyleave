@@ -17,39 +17,31 @@ import com.chainsys.modal.StudentLogin;
 public class StudentLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-			
-		
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
-		
 		StudentLogin studentLogin = new StudentLogin();
 		studentLogin.setName(name);
 		studentLogin.setPassword(password);
-		
 		StudentLoginDAO studentLogindao = new StudentLoginDAO();
-			boolean result;
-			try {
+		boolean result;
+		try {
 			result = studentLogindao.validator(studentLogin);
-			System.out.println(result);
-			
 			if (result == true) {
-			session.setAttribute("NAME", name);
-			RequestDispatcher rd = request.getRequestDispatcher("applyleave.html");
-			rd.forward(request, response);
-			} 
-			else {
-			request.setAttribute("ERROR", "Wrong password. Try again or click forget password");
-			RequestDispatcher rd = request.getRequestDispatcher("studentlogin.html");
-			rd.include(request, response);
+				session.setAttribute("NAME", name);
+				RequestDispatcher rd = request
+						.getRequestDispatcher("applyleave.html");
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("INVALID", "Invalid Name or Password");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("studentlogin.jsp");
+				rd.include(request, response);
 			}
-		}
-		
-			catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			//System.out.println("false");	
-			}
+		}
 	}
 }

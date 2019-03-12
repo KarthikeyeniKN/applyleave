@@ -20,17 +20,13 @@ public class HistoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ApplyPassDAO applyPassdao = new ApplyPassDAO();
-
 		try {
 			ArrayList<ApplyPass> history = applyPassdao.findAllHistory();
 			request.setAttribute("HISTORY", history);
-			RequestDispatcher rd = request
-					.getRequestDispatcher("history.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("history.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("false");
 		}
 	}
-
 }

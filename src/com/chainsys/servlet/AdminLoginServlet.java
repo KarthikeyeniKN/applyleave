@@ -16,32 +16,28 @@ import com.chainsys.modal.ApplyPass;
 @WebServlet("/AdminLoginServlet")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    		String name = request.getParameter("name");
-    		String password = request.getParameter("password");
-    		ApplyPassDAO applyPassdao = new ApplyPassDAO();
-    		
-    		try {
-    		if (name.equalsIgnoreCase("admin")
-    		&& password.equalsIgnoreCase("admin")) {
-    		
-    			ArrayList<ApplyPass> leaveList=applyPassdao.findAll();
-    		request.setAttribute("LEAVELIST", leaveList);
-    	    RequestDispatcher rd = request.getRequestDispatcher("leavelist.jsp");
-    		rd.forward(request, response);
-    		} else {
-    			System.out.println("false");
-    		request.setAttribute("ERROR", "Wrong password");
-    		RequestDispatcher rd = request
-    		.getRequestDispatcher("admin.html");
-    		rd.include(request, response);
-    		}
-    		}
-    		catch(Exception e) {
-    			e.printStackTrace();
-    			System.out.println("false");	
-    			}
-    		}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		ApplyPassDAO applyPassdao = new ApplyPassDAO();
+		try {
+			if (name.equalsIgnoreCase("admin")
+					&& password.equalsIgnoreCase("admin")) {
+				ArrayList<ApplyPass> leaveList = applyPassdao.findPending();
+				request.setAttribute("LEAVELIST", leaveList);
+				RequestDispatcher rd = request
+						.getRequestDispatcher("leavelist.jsp");
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("INVALID", "Invalid name or password");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("adminlogin.jsp");
+				rd.include(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
-
+}

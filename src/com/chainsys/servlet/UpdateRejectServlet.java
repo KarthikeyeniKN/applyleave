@@ -15,27 +15,24 @@ import com.chainsys.modal.ApplyPass;
 @WebServlet("/UpdateRejectServlet")
 public class UpdateRejectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int selectedRollno = Integer.parseInt(request.getParameter("Aproverollno"));
-		ApplyPass applyPass=new ApplyPass();
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		int selectedRollno = Integer.parseInt(request
+				.getParameter("Rejectrollno"));
+		ApplyPass applyPass = new ApplyPass();
 		applyPass.setRollno(selectedRollno);
-			
 		ApplyPassDAO applyPassdao = new ApplyPassDAO();
-		
 		try {
-			ApplyPass applyPass1=applyPassdao.updateRejectStatus(applyPass);
-		//	System.out.println(applyPass1);
-			request.setAttribute("LEAVELIST", applyPassdao.findAll());
-			RequestDispatcher rd=request.getRequestDispatcher("leavelist.jsp");
+			@SuppressWarnings("unused")
+			ApplyPass applyPass1 = applyPassdao.updateRejectStatus(applyPass);
+			request.setAttribute("LEAVELIST", applyPassdao.findPending());
+			RequestDispatcher rd = request
+					.getRequestDispatcher("leavelist.jsp");
 			rd.forward(request, response);
-		
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			RequestDispatcher rd=request.getRequestDispatcher("Failure.html");
+			RequestDispatcher rd = request.getRequestDispatcher("Failure.html");
 			rd.forward(request, response);
 		}
 	}

@@ -4,17 +4,17 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class ApplyPass {
-	public int id;
-	public String name;
-	public String department;
-	public int year;
-	public int rollno;
-	public String email;
-	public LocalDate leavedate;
-	public String leavepurpose;
-	public long phonenumber;
-	public String status;
-	public Timestamp createddate;
+	private int id;
+	private String name;
+	private String department;
+	private int year;
+	private int rollno;
+	private String email;
+	private LocalDate leavedate;
+	private String leavepurpose;
+	private long phonenumber;
+	private String status;
+	private Timestamp createddate;
 
 	public int getId() {
 		return id;
@@ -117,7 +117,4 @@ public class ApplyPass {
 				+ phonenumber + ", status=" + status + ", createddate="
 				+ createddate + "]";
 	}
-
-	
-
 }

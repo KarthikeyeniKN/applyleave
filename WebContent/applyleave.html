@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -19,6 +18,8 @@
 	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Apply Leave</title>
 <style>
@@ -99,7 +100,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav nav-flex-icons">
-						<li class="nav-item"><a href="studentlogin.html">
+						<li class="nav-item"><a href="studentlogin.jsp">
 								<button type="button" class="btn btn-danger waves-effect btn-sm"
 									id="Logout">
 									<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;LogOut
@@ -107,7 +108,6 @@
 						</a></li>
 					</ul>
 				</div>
-
 			</div>
 		</nav>
 		<!-- Navbar -->
@@ -115,23 +115,18 @@
 	<!--Main layout-->
 	<main class="pt-5 mx-lg-5"> <!--Grid row-->
 	<div class="row wow fadeIn" id="ApplyLeave">
-
 		<!--Grid column-->
 		<div class="col-md-9 mb-4">
-
 			<div id="badgeDiv" class="card mb-4 wow fadeIn">
 				<span id="badgeSpan" class="badge darkgreen"> <i
 					id="badgeIcon" class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
 					Applying Leave
 				</span>
 			</div>
-
 			<!--Card-->
 			<div class="card">
-
 				<!--Card content-->
 				<div class="card-body">
-
 					<form name="myform" id="formBtn" action="ApplyPassServlet"
 						method="post">
 						<!-- Grid row -->
@@ -140,14 +135,17 @@
 							<div class="md-form">
 								<i class="fa fa-user fa-2x prefix"></i> <input type="text"
 									id="Name" name="Name" class="form-control"
-									placeholder="Your Name" required maxlength="15" >
-
+									placeholder="Your Name"
+									title="4-15 Characters,a-z is only allowed"
+									pattern="[a-z]{4,15}" required maxlength="15">
 							</div>
 							<!-- Default input -->
 							<div class="md-form">
 								<i class="fa fa-flighter-jet prefix" aria-hidden="true"></i> <input
 									type="text" id="Department" name="Department"
-									class="form-control" placeholder="Department" required pattern="[a-z]{3}" maxlength="3">
+									class="form-control" placeholder="Department" required
+									pattern="[a-z]{3}" title="3 Characters,a-z is only allowed"
+									maxlength="3">
 							</div>
 						</div>
 						<!-- Grid row -->
@@ -155,7 +153,9 @@
 							<div id="year" class="md-form">
 								<i class="fa fa-id-card-o fa-2x prefix"></i> <input type="tel"
 									id="Year" name="Year" pattern="[1-4]{1}" maxlength="1"
-									class="form-control validate" placeholder="Year" required>
+									class="form-control validate" 
+									title="1-4 numbers is only allowed"
+									placeholder="Year" required>
 							</div>
 						</div>
 						<!-- Grid row -->
@@ -163,7 +163,7 @@
 							<div id="rollnoDiv" class="md-form">
 								<i class="fa fa-id-badge fa-2x prefix"></i> <input type="tel"
 									id="Rollno" name="Rollno" class="form-control validate"
-									placeholder="Rollno" required pattern="[1-9]{6}" maxlength="6">
+									placeholder="Rollno" required pattern="[1-9]{6}" title="only digits allowed" maxlength="6">
 							</div>
 						</div>
 						<!-- Grid row -->
@@ -172,10 +172,9 @@
 							<div id="emailDiv" class="md-form">
 								<i class="fa fa-envelope prefix"></i> <input type="email"
 									id="Email" name="Email" class="form-control validate"
-									placeholder="Your college Email" required>
+									placeholder="Your college Email" title="abc12@gmail.com" pattern="[a-z0-9]+@[a-z]+.[a-z]{2,}" required>
 							</div>
 						</div>
-
 						<!-- Grid row -->
 						<div id="durationDiv" class="card mb-4 wow fadeIn">
 							<span id="durationSpan" class="badge darkgreen"> Duration</span>
@@ -183,102 +182,52 @@
 						<span>Leave Date :</span>
 						<!-- Grid row -->
 						<div class="form-row">
-
 							<!-- Default input -->
 							<div class="md-form">
 								<i class="fa fa-calendar prefix" aria-hidden="true"></i> <input
-									required type="date" id="LeaveDate" name="Leavedate"
-									class="form-control">
+									required type="date" id="LeaveDate" name="Leavedate" title="only from today date is allowed"
+									min="2019-03-11" max="2030-01-01" class="form-control">
 							</div>
 						</div>
-
 						<!-- Grid row -->
 						<div class="form-row">
-
 							<!-- Default input -->
 							<div id="leavepurposeDiv" class="md-form">
 								<i class="fa fa-building prefix" aria-hidden="true"></i> <input
 									type="text" id="Leavepurpose" name="Leavepurpose"
-									class="form-control" placeholder="Leave Purpose" required maxlength="15">
+									class="form-control" placeholder="Leave Purpose" pattern="[a-z]{5,15}" required
+									title="only characters allowed" maxlength="15">
 							</div>
 						</div>
 						<!-- Grid row -->
 						<div class="form-row">
-
 							<!-- Default input -->
 							<div id="phoneDiv" class="md-form">
 								<i class="fa fa-phone prefix" aria-hidden="true"></i> <input
 									type="tel" id="Phoneno" name="Phoneno" class="form-control"
-									pattern="[6-9]{1}[0-9]{9}" maxlength="10"
+									title="only digits allowed" pattern="[6-9]{1}[0-9]{9}" maxlength="10"
 									placeholder="Your Phonenumber" required>
 							</div>
 						</div>
-
 						<!-- Grid row -->
 						<div class="form-row">
 							<div id="buttonDiv" class="md-form">
 								<button id="Applyleave" type="submit" name="ApplyLeave"
-									class="btn btn-danger btn-rounded">
+									class="btn btn-danger btn-rounded" onclick="myFunction()">
 									<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;Apply
 								</button>
 							</div>
 						</div>
 					</form>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="modal" id="SucessModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Leave Request</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>Request has been sent. Check your status after few minutes</p>
-				</div>
-				<div class="modal-footer">
-					<a href="applyleave.html">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">OK</button>
-					</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	</main>
-	<script>
-		// Get the modal
-		var modal = document.getElementById('SucessModal');
-
-		// Get the button that opens the modal
-		var btn = document.getElementById('Applyleave');
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		btn.onclick = function() {
-			modal.style.display = "block";
+	<!-- <script>
+		function myFunction() {
+			alert("Request has been sent. Check your status after few minutes");
 		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		/* // When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			} */
-		}
-	</script>
+	</script> -->
 </body>
-
 </html>

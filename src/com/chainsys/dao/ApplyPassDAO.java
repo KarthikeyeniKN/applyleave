@@ -11,70 +11,36 @@ import com.chainsys.modal.ApplyPass;
 import com.chainsys.passgeneration.ConnectionUtil;
 
 public class ApplyPassDAO {
-	public void add(ApplyPass applyPass) throws Exception {
-		try {
-			Connection connection = ConnectionUtil.getConnection();
-
-			String sql = "insert into apply_pass(id,name,department,year,rollno,email,leave_date,purpose,phone_no,created_date) values(apply_pass_sno_seq.NEXTVAL,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(sql);
-			preparedStatement.setString(1, applyPass.name);
-			preparedStatement.setString(2, applyPass.department);
-			preparedStatement.setInt(3, applyPass.year);
-			preparedStatement.setInt(4, applyPass.rollno);
-			preparedStatement.setString(5, applyPass.email);
-			preparedStatement.setDate(6, Date.valueOf(applyPass.leavedate));
-			preparedStatement.setString(7, applyPass.leavepurpose);
-			preparedStatement.setLong(8, applyPass.phonenumber);
-			preparedStatement.setTimestamp(9, applyPass.createddate);
-			int rows = preparedStatement.executeUpdate();
-			System.out.println("Rows inserted: " + rows);
-			ConnectionUtil.close(connection, preparedStatement, null);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new Exception("unable to insert");
-		}
-	}
-
-	public ArrayList<ApplyPass> findAll() throws Exception {
-		ApplyPass applyPass = null;
-		ArrayList<ApplyPass> leaveList = new ArrayList<>();
-		try {
-			Connection connection = ConnectionUtil.getConnection();
-			String sql1 = "select id,name,department,year,rollno,leave_date,purpose from apply_pass";
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(sql1);
-
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				applyPass = new ApplyPass();
-				applyPass.setId(resultSet.getInt("id"));
-				applyPass.setName(resultSet.getString("name"));
-				applyPass.setDepartment(resultSet.getString("department"));
-				applyPass.setYear(resultSet.getInt("year"));
-				applyPass.setRollno(resultSet.getInt("rollno"));
-				applyPass.setLeavedate(resultSet.getDate("leave_date")
-						.toLocalDate());
-				applyPass.setLeavepurpose(resultSet.getString("purpose"));
-
-				leaveList.add(applyPass);
-				// System.out.println("sucess");
+	public void add(ApplyPass applyPass) {
+			try {
+				Connection connection = ConnectionUtil.getConnection();
+				String sql = "insert into apply_pass(id,name,department,year,rollno,email,leave_date,purpose,phone_no,created_date) values(apply_pass_id_seq.NEXTVAL,?,?,?,?,?,?,?,?,?)";
+				PreparedStatement preparedStatement = connection
+						.prepareStatement(sql);
+				preparedStatement.setString(1, applyPass.getName());
+				preparedStatement.setString(2, applyPass.getDepartment());
+				preparedStatement.setInt(3, applyPass.getYear());
+				preparedStatement.setInt(4, applyPass.getRollno());
+				preparedStatement.setString(5, applyPass.getEmail());
+				preparedStatement
+						.setDate(6, Date.valueOf(applyPass.getLeavedate()));
+				preparedStatement.setString(7, applyPass.getLeavepurpose());
+				preparedStatement.setLong(8, applyPass.getPhonenumber());
+				preparedStatement.setTimestamp(9, applyPass.getCreateddate());
+				@SuppressWarnings("unused")
+				int rows = preparedStatement.executeUpdate();
+				ConnectionUtil.close(connection, preparedStatement, null);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			ConnectionUtil.close(connection, preparedStatement, resultSet);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new Exception("unable findAll");
+		
 		}
-		return leaveList;
-	}
 
 	public ArrayList<ApplyPass> findByName(String name) throws Exception {
 		ApplyPass applyPass1 = null;
 		ResultSet resultSet = null;
 		ArrayList<ApplyPass> applyPass = new ArrayList<ApplyPass>();
-
 		try {
 			Connection connection = ConnectionUtil.getConnection();
 			String sql2 = "select rollno,leave_date,purpose,status from apply_pass where name=?";
@@ -82,7 +48,6 @@ public class ApplyPassDAO {
 					.prepareStatement(sql2);
 			preparedStatement.setString(1, name);
 			resultSet = preparedStatement.executeQuery();
-
 			while (resultSet.next()) {
 				applyPass1 = new ApplyPass();
 				applyPass1.setRollno(resultSet.getInt("rollno"));
@@ -107,9 +72,8 @@ public class ApplyPassDAO {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(sql);
 			preparedStatement.setInt(1, applyPass.getRollno());
-
+			@SuppressWarnings("unused")
 			int rows = preparedStatement.executeUpdate();
-			System.out.println("Rows updated: " + rows);
 			ConnectionUtil.close(connection, preparedStatement, null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,8 +89,8 @@ public class ApplyPassDAO {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(sql);
 			preparedStatement.setInt(1, applyPass.getRollno());
+			@SuppressWarnings("unused")
 			int rows = preparedStatement.executeUpdate();
-			System.out.println("Rows updated: " + rows);
 			ConnectionUtil.close(connection, preparedStatement, null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -143,9 +107,7 @@ public class ApplyPassDAO {
 			String sql1 = "select id,name,department,year,rollno,leave_date,purpose,status from apply_pass";
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(sql1);
-
 			ResultSet resultSet = preparedStatement.executeQuery();
-
 			while (resultSet.next()) {
 				applyPass = new ApplyPass();
 				applyPass.setId(resultSet.getInt("id"));
@@ -158,23 +120,20 @@ public class ApplyPassDAO {
 				applyPass.setLeavepurpose(resultSet.getString("purpose"));
 				applyPass.setStatus(resultSet.getString("status"));
 				history.add(applyPass);
-
 			}
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			// throw new Exception("unable findFood");
+			throw new Exception("unable findAll");
 		}
 		return history;
 	}
 
 	public ArrayList<ApplyPass> searchBy(String name, String department,
-			String status) {
+			String status) throws Exception {
 		ApplyPass applyPass1 = null;
 		ResultSet resultSet = null;
 		ArrayList<ApplyPass> applyPass = new ArrayList<ApplyPass>();
-		//System.out.println("entered");
 		try {
 			Connection connection = ConnectionUtil.getConnection();
 			String sql2 = "select id,name,department,year,rollno,leave_date,purpose,status from apply_pass where name=? or department=? or status=?";
@@ -183,9 +142,7 @@ public class ApplyPassDAO {
 			preparedStatement.setString(1, name);
 			preparedStatement.setString(2, department);
 			preparedStatement.setString(3, status);
-		//	preparedStatement.setInt(4, year);
 			resultSet = preparedStatement.executeQuery();
-
 			while (resultSet.next()) {
 				applyPass1 = new ApplyPass();
 				applyPass1.setId(resultSet.getInt("id"));
@@ -197,16 +154,42 @@ public class ApplyPassDAO {
 						.toLocalDate());
 				applyPass1.setLeavepurpose(resultSet.getString("purpose"));
 				applyPass1.setStatus(resultSet.getString("status"));
-			
-				// System.out.println(applyPass1);
 				applyPass.add(applyPass1);
 			}
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
 		} catch (Exception e) {
 			e.printStackTrace();
-			// throw new Exception("Unable to selectBy");
+			throw new Exception("Unable to selectBy");
 		}
-		System.out.println(applyPass1);
 		return applyPass;
+	}
+
+	public ArrayList<ApplyPass> findPending() throws Exception {
+		ApplyPass applyPass = null;
+		ArrayList<ApplyPass> leaveList = new ArrayList<>();
+		try {
+			Connection connection = ConnectionUtil.getConnection();
+			String sql1 = "select id,name,department,year,rollno,leave_date,purpose from apply_pass where status ='pending'";
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(sql1);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				applyPass = new ApplyPass();
+				applyPass.setId(resultSet.getInt("id"));
+				applyPass.setName(resultSet.getString("name"));
+				applyPass.setDepartment(resultSet.getString("department"));
+				applyPass.setYear(resultSet.getInt("year"));
+				applyPass.setRollno(resultSet.getInt("rollno"));
+				applyPass.setLeavedate(resultSet.getDate("leave_date")
+						.toLocalDate());
+				applyPass.setLeavepurpose(resultSet.getString("purpose"));
+				leaveList.add(applyPass);
+			}
+			ConnectionUtil.close(connection, preparedStatement, resultSet);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("unable findPending");
+		}
+		return leaveList;
 	}
 }
